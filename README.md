@@ -1,16 +1,17 @@
 .
 ***In Progress**
 
-	 	 		 ---------------------------------------------------------------------------
-	     	    	   	  **Implementing multitier microservices architecture in Kubernetes (k8s)**
-	  	 		 ----------------------------------------------------------------------------
+	 	 	   ----------------------------------------------------------------------------
+	     	    	     **Implementing multitier microservices architecture in Kubernetes (k8s)**
+	  	 	   ----------------------------------------------------------------------------
 
 ```text
 Microservice Architecture/Traffic Flow Overview
 -------------------------------------------------
 [client/systems] -> [k8s service (type nodeport) - for app/api] -> [k8s deployment/pod endpoint - for app/api] -> [k8s service (type cluster IP) - for postgresql] ->  [k8s deployment/pod endpoint - for postgresql]
+```
 
-
+```text
 Networking Implementation
 ---------------------------
 Client traffic/request would connect to the k8s service of nodeport type (the destination ip from client would be the node ip address, with nodeport service the node is set to receive traffic on the configured nodeport and forward the traffic to its endpoint that is listening on the port configured in the service config), the service would forward the traffic to one of its endpoint which is a pod that is being managed under deployment resource (the endpoints were part of the service based on label), based on the request, the app would perform the task requested by communicating with the backend db via the service for db. the db service is of cluster IP type. Cluster IP type would be more suitable because it's not exposing itself to the external traffic, only traffic within the cluster can access the db service. 
@@ -25,7 +26,8 @@ App/API implementation and Docker image
 ----------------------------------------
 The app is implemented using python and its api framework called fastapi in Linux environment. The api is set to listens to TCP port 8000 and the Docker image is created by building Docker
 file. Configmap is also used to set the config options/environment variable.
-
+```
+```text
 [k8 service for app/api] 
 -------------------------
 apiVersion: v1
@@ -241,4 +243,5 @@ data:
 
 Notes:
 -configmap used to set env var for postgresql
+```
 
