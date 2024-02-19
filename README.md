@@ -1,8 +1,9 @@
 .
 ***In Progress***
-						---------------------------------------------------------------------------
-						  **Implementing multitier microservices architecture in Kubernetes (k8s)**  
-						----------------------------------------------------------------------------
+
+	---------------------------------------------------------------------------
+	**Implementing multitier microservices architecture in Kubernetes (k8s)**  
+	----------------------------------------------------------------------------
 
 Microservice Architecture/Traffic Flow Overview
 ------------------------------------------------
