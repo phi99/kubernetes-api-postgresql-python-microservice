@@ -115,13 +115,13 @@ configmap is for providing env var for the app
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: "2024-01-09T09:21:44Z"
+  creationTimestamp: 
   labels:
     app: test-postgres2
   name: test-postgres2
   namespace: test-namespace
-  resourceVersion: "262014"
-  uid: ea2efdbe-8ef3-4920-a001-8cadeeb704fb
+  resourceVersion: 
+  uid: 
 spec:
   clusterIP: 10.109.77.134
   clusterIPs:
