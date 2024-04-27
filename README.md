@@ -127,9 +127,9 @@ metadata:
   resourceVersion: 
   uid: 
 spec:
-  clusterIP: 10.109.77.134
+  clusterIP: 
   clusterIPs:
-  - 10.109.77.134
+  - 
   internalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
