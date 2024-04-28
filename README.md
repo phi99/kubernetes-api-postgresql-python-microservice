@@ -2,7 +2,7 @@
 ***In Progress**
 
 	 	 	   ----------------------------------------------------------------
-	     	    	     **Multitier microservices architecture in Kubernetes (k8s)**
+	     	    	     **Multitier microservices architecture in Kubernetes (K8s)**
 	  	 	   ----------------------------------------------------------------
 
 ```text
@@ -35,15 +35,15 @@ Configmap is also used to set the config options/environment variable.
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-api
+  name: 
   labels:
-    app: test-api
+    app: 
 spec:
   ports:
-  - port: 8000
-    nodePort: 30008
+  - port: 
+    nodePort: 
   selector:
-    app: test-api
+    app: 
   type: NodePort
 
 Notes:
@@ -60,33 +60,33 @@ cluster ip - user/traffic external from the cluster not able to access the db di
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  creationTimestamp: 
   labels:
-    app: test-api
-  name: test-api
-  namespace: test-namespace
+    app: 
+  name: 
+  namespace: 
 spec:
-  replicas: 1
+  replicas: 
   selector:
     matchLabels:
-      app: test-api
+      app: 
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      creationTimestamp: 
       labels:
-        app: test-api
+        app: 
     spec:
       containers:
-      - image: imagetestenv_new
-        imagePullPolicy: Never
+      - image: 
+        imagePullPolicy: 
         ports:
-          - containerPort: 8000
+          - containerPort: 
         envFrom:
           - configMapRef:
-              name: api-configmap
-        name: test-api-container
-        command: ["uvicorn","--host","0.0.0.0","testmain:app"]
+              name: 
+        name: 
+        command: 
 
 
 Note:
@@ -102,15 +102,15 @@ k8 configmap for app
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: api-configmap
+  name: 
   labels:
-    app: test-api
+    app: 
 data:
   POSTGRES_USER: 
   POSTGRES_PASSWORD: 
-  SVC_DB_PORT: "5432"
-  SVC_DB: test-postgres2
-  TARGET_DB: root
+  SVC_DB_PORT: 
+  SVC_DB: 
+  TARGET_DB: 
 
 configmap is for providing env var for the app
 
@@ -121,27 +121,27 @@ kind: Service
 metadata:
   creationTimestamp: 
   labels:
-    app: test-postgres2
-  name: test-postgres2
-  namespace: test-namespace
+    app: 
+  name: 
+  namespace: 
   resourceVersion: 
   uid: 
 spec:
   clusterIP: 
   clusterIPs:
   - 
-  internalTrafficPolicy: Cluster
+  internalTrafficPolicy: 
   ipFamilies:
   - IPv4
-  ipFamilyPolicy: SingleStack
+  ipFamilyPolicy: 
   ports:
-  - port: 5432
-    protocol: TCP
-    targetPort: 5432
+  - port: 
+    protocol: 
+    targetPort: 
   selector:
-    app: test-postgres2
-  sessionAffinity: None
-  type: ClusterIP
+    app: 
+  sessionAffinity: 
+  type: 
 status:
   loadBalancer: {}
 
@@ -150,39 +150,39 @@ status:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  creationTimestamp: 
   labels:
-    app: test-postgres2
-  name: test-postgres2
-  namespace: test-namespace
+    app: 
+  name: 
+  namespace: 
 spec:
-  replicas: 1
+  replicas: 
   selector:
     matchLabels:
-      app: test-postgres2
+      app: 
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      creationTimestamp: 
       labels:
-        app: test-postgres2
+        app: 
     spec:
       containers:
-      - image: postgres
-        imagePullPolicy: Never
+      - image: 
+        imagePullPolicy:
         ports:
-          - containerPort: 5432
+          - containerPort: 
         envFrom:
           - configMapRef:
-              name: postgres-configmap
-        name: test-postgres2
+              name: 
+        name: 
         volumeMounts:
-          - mountPath: /var/lib/postgresql/data
-            name: postgresvol
+          - mountPath: 
+            name: 
       volumes:
-        - name: postgresvol
+        - name: 
           persistentVolumeClaim:
-            claimName: postgres-pvc
+            claimName: 
 
 Notes:
 -similar with deployment for the app
@@ -194,16 +194,16 @@ Persistent Volume for Postgresql
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: postgres-pv
+  name: 
   labels:
-    type: local
-    app: test-postgres2
+    type: 
+    app: 
 spec:
-  storageClassName: manual1
+  storageClassName: 
   capacity:
-    storage: 5Gi
+    storage: 
   accessModes:
-    - ReadWriteMany
+    - 
   hostPath:
     path: 
 
@@ -216,16 +216,16 @@ Persistent Volume Claim for Postgresql
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: postgres-pvc
+  name: 
   labels:
-    app: test-postgres2
+    app: 
 spec:
-  storageClassName: manual1
+  storageClassName: 
   accessModes:
-    - ReadWriteMany
+    - 
   resources:
     requests:
-      storage: 5Gi
+      storage: 
 
 Notes:
 -pvc is used to bind/use the pv to be used on the pod 
@@ -236,9 +236,9 @@ configmap for Postgresql
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: postgres-configmap
+  name: 
   labels:
-    app: test-postgres
+    app: 
 data:
   POSTGRES_USER: 
   POSTGRES_PASSWORD: 
