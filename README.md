@@ -23,10 +23,10 @@ The database is implemented utilizing Postgresql.
 K8s configmap resource is utilized to provide the config options needed for the postgresql image to run in the k8s deployment. 
 K8s persistent volume and persistent volume resource claim was used to provide persistent storage for the postgresql, so that even if the container process/pod is destroyed in the deployment and recreated, the database would persist and accessible on the new pod/deployment.
 
-App/API implementation and Docker image
+App/API implementation
 ----------------------------------------
 The App is implemented using python and its api framework called fastapi in Linux environment.
-The API is set to listens to TCP port 8000 and the Docker image is created by building Docker file.
+The API is set to listens to TCP port 8000. 
 Configmap is also used to set the config options/environment variable.
 ```
 ```text
